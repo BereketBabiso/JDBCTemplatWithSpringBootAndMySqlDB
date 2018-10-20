@@ -16,9 +16,7 @@ import com.jdbctemplateone.demo.domain.User;
 public class UserRepository {
 	
 	@Autowired
-	private NamedParameterJdbcTemplate namedJdbcTmplate;
-	
-	
+	private NamedParameterJdbcTemplate namedJdbcTmplate;	
 	
 	public List<User> findAll(){
 		String qry = "SELECT * FROM student";
@@ -44,7 +42,10 @@ public class UserRepository {
 			}
 		});
 	}
-	
+	/*
+	 * finds all the users in a database.
+	 * @return List of users
+	 */
 	public List<String> findFirstNames(){
 		String qry = "SELECT first_name FROM student";
 		return this.namedJdbcTmplate.query(qry, (rs)->{
@@ -60,9 +61,11 @@ public class UserRepository {
 				return null;
 			}
 		});
-		//return this.namedJdbcTmplate.queryForList("select first_name from student", String.class);
 	}
-	
+	/*
+	 * finds a user by id.
+	 * @return a user
+	 */
 	public User findUserById(int userid) {
 		String qry = "SELECT * FROM student WHERE id=:userID";
 		MapSqlParameterSource params = new MapSqlParameterSource();
