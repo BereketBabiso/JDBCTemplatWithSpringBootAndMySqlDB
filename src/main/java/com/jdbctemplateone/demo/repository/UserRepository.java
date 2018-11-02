@@ -108,5 +108,9 @@ public class UserRepository {
 			}
 		});
 	}
+	
+	public String testMethod() {
+		return "hi";
+	}
 
 }

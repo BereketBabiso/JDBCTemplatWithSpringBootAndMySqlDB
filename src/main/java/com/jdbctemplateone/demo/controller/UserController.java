@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jdbctemplateone.demo.domain.QueryInfo;
 import com.jdbctemplateone.demo.domain.User;
 import com.jdbctemplateone.demo.repository.UserRepository;
 
@@ -37,6 +38,13 @@ public class UserController {
 	@RequestMapping(name="/user/{userId}/{userNafirstNameme}",method=RequestMethod.POST)
 	public User getUserByIdAndFirstNam(@PathVariable String userId, @PathVariable String firstName) {
 		return this.userRepository.findUserByIdAndFirstName(Integer.parseInt(userId), firstName);
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		QueryInfo x = User.select().id().fName().from().whereId(2).build();
+		
+		return x.getSql();
 	}
 	
 
