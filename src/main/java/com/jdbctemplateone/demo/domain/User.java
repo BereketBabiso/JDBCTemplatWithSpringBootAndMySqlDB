@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
-import com.healthmarketscience.sqlbuilder.SelectQuery;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @CustomTable(name = "mytable")
 public class User {
 	@CustomColumn(name = "id")
