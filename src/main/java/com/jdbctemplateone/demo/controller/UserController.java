@@ -18,6 +18,7 @@ import com.jdbctemplateone.demo.domain.User;
 import com.jdbctemplateone.demo.repository.UserRepository;
 import com.jdbctemplateone.demo.util.DbConstants;
 import com.jdbctemplateone.demo.util.SelectQueryBuilder;
+import com.jdbctemplateone.demo.util.UpdateQueryBuilder;
 
 @RestController
 @RequestMapping("/users")
@@ -75,6 +76,15 @@ public class UserController {
 		long endTime = new Date().getTime();
 		logger.info("Time taken to build the query using healthmarket library: "+ (endTime - startTime)+"ms");
 		return qry;
+	}
+	
+	@GetMapping("/test5")
+	public String test5() {
+		User user = new User();
+		user.setId(3);
+		user.setFName("bere");
+		QueryInfo queryInfo = new UpdateQueryBuilder(user).update("fName", "Lisa").where().condition("id", 3).build();
+		return queryInfo.getSql();
 	}
 
 }
